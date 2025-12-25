@@ -1,0 +1,81 @@
+package GropingAndJoiningDemo;
+public class Employees {
+    private int eId;
+    private String name;
+    private double salary;
+    private String city;
+    private String gender;
+    Employees(int eId,String name,double salary,String city,String gender)
+    {
+        this.eId=eId;
+        this.name=name;
+        this.salary=salary;
+        this.city=city;
+        this.gender=gender;
+    }
+    int getEid()
+    {
+        return eId;
+    }
+    String getName()
+    {
+        return name;
+    }
+    double getSalary()
+    {
+        return salary;
+    }
+    String getCity()
+    {
+        return city;
+    }
+    String getGender()
+    {
+
+        return gender;
+    }
+    public String toString()
+    {
+        return "["+"Eid"+eId+"Name"+name+"Salary"+salary+"City"+city+"Gender"+gender+"]";
+    }
+}
+package GropingAndJoiningDemo;
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.stream.Collectors;
+public class EmployeesCountBasedOnCity {
+    public static LinkedList<Employees> getAllEmployeesCount()
+    {
+        Employees e1=new Employees(30,"Srinuvasulu", 50000.0, "New York", "Male");
+        Employees e2=new Employees( 25,"Raja" ,45000.0, "Los Angeles", "Male");
+        Employees e3=new Employees(35,"Mamatha",60000.0, "Paireddy Palem", "Female");
+        Employees e4=new Employees(17, "Priya", 52000.0, "Boston", "Female");
+        Employees e5=new Employees(87, "MahendraReddy", 58000.0, "New York", "Male");
+        Employees e6=new Employees(29,"Pravallika" ,51000.0, "Denver", "Female");
+        Employees e7=new Employees(31,"Sumalatha" ,55000.0, "America", "Male");
+        Employees e8=new Employees(27,"Yashu",48000.0, "London", "Female");
+        Employees e9=new Employees(33,"Balaji" ,57000.0, "Portland", "Male");
+        Employees e10=new Employees(26,"Chandra" ,49000.0, "New York", "Male");
+        LinkedList<Employees> l=new LinkedList<>();
+        l.add(e1);
+        l.add(e2);
+        l.add(e3);
+        l.add(e4);
+        l.add(e5);
+        l.add(e6);
+        l.add(e7);
+        l.add(e8);
+        l.add(e9);
+        l.add(e10);
+        return l;
+    }
+        public static void main(String[] args)
+        {
+            LinkedList<Employees> allEmployeesCount=getAllEmployeesCount();
+            Map<String,Long> empCount=allEmployeesCount
+            .stream()
+            .collect(Collectors.groupingBy(e->e.getCity(),Collectors.counting()));
+            System.out.println(empCount);
+        }
+    }
+
